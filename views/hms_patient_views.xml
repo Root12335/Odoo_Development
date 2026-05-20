@@ -37,7 +37,7 @@
                             <field name="age" readonly="1"/>
                             <field name="department_id"/>
                             <field name="department_capacity" readonly="1"/>
-                            <field name="doctor_ids" widget="many2many_tags" readonly="not department_id"/>
+                            <field name="doctor_ids" widget="many2many_tags" readonly="not department_id" groups="hms.group_hms_manager"/>
                         </group>
                         <group>
                             <field name="blood_type"/>

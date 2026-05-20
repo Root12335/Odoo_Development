@@ -33,5 +33,5 @@
         <field name="view_mode">tree,form</field>
     </record>
 
-    <menuitem id="menu_hms_doctor" name="Doctors" parent="menu_hms_root" action="action_hms_doctor" sequence="30"/>
+    <menuitem id="menu_hms_doctor" name="Doctors" parent="menu_hms_root" action="action_hms_doctor" sequence="30" groups="hms.group_hms_manager"/>
 </odoo>

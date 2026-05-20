@@ -5,6 +5,8 @@
     "author": "Amr",
     "depends": ["base"],
     "data": [
+        "security/hms_groups.xml",
+        "security/ir.model.access.csv",
         "views/hms_patient_views.xml",
         "views/hms_department_views.xml",
         "views/hms_doctor_views.xml",
