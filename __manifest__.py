@@ -10,7 +10,9 @@
         "views/hms_patient_views.xml",
         "views/hms_department_views.xml",
         "views/hms_doctor_views.xml",
-        "views/res_partner_views.xml"
+        "views/res_partner_views.xml",
+        "report/hms_patient_report.xml",
+        "report/patient_report_templates.xml"
     ],
     "application": True,
     "installable": True,

@@ -25,6 +25,7 @@
             <form>
                 <header>
                     <field name="state" widget="statusbar" statusbar_visible="undetermined,good,fair,serious" options="{'clickable': True}"/>
+                    <button name="%(action_hms_patient_report)d" type="action" string="Print Report" class="btn-primary"/>
                 </header>
                 <sheet>
                     <group>
