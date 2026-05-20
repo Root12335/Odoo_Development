@@ -3,6 +3,7 @@
     <template id="patient_status_report">
         <t t-call="web.html_container">
             <t t-foreach="docs" t-as="doc">
+                <t t-set="patient" t-value="doc.sudo()"/>
                 <t t-call="web.external_layout">
                     <div class="page">
                         <style>
@@ -91,28 +92,28 @@
                             <div class="hms-title-row">
                                 <div class="hms-title">Patient Status Report</div>
                                 <div>
-                                    <img t-if="doc.image" t-att-src="image_data_uri(doc.image)" class="hms-photo" alt="Patient Photo"/>
+                                    <img t-if="patient.image" t-att-src="image_data_uri(patient.image)" class="hms-photo" alt="Patient Photo"/>
                                     <div t-else="" class="hms-photo"/>
                                 </div>
                             </div>
 
                             <div class="hms-info-grid">
                                 <div class="hms-info-col">
-                                    <div class="hms-info-row"><span class="hms-label">Name:</span> <span t-esc="doc.first_name or ''"/> <span t-esc="doc.last_name or ''"/></div>
-                                    <div class="hms-info-row"><span class="hms-label">Age:</span> <span t-esc="doc.age or 0"/></div>
-                                    <div class="hms-info-row"><span class="hms-label">Department:</span> <span t-esc="doc.department_id.name or ''"/></div>
+                                    <div class="hms-info-row"><span class="hms-label">Name:</span> <span t-esc="patient.first_name or ''"/> <span t-esc="patient.last_name or ''"/></div>
+                                    <div class="hms-info-row"><span class="hms-label">Age:</span> <span t-esc="patient.age or 0"/></div>
+                                    <div class="hms-info-row"><span class="hms-label">Department:</span> <span t-esc="patient.department_id.name or ''"/></div>
                                     <div class="hms-info-row"><span class="hms-label">Doctors:</span>
-                                        <span t-if="doc.doctor_ids" t-esc="', '.join(doc.doctor_ids.mapped('first_name'))"/>
+                                        <span t-if="patient.doctor_ids" t-esc="', '.join(patient.doctor_ids.mapped('display_name'))"/>
                                         <span t-else="">-</span>
                                     </div>
                                 </div>
                                 <div class="hms-info-col">
-                                    <div class="hms-info-row"><span class="hms-label">Birth date:</span> <span t-esc="doc.birthdate or ''"/></div>
-                                    <div class="hms-info-row"><span class="hms-label">PCR:</span> <span t-esc="doc.cr_ratio or 0.0"/></div>
+                                    <div class="hms-info-row"><span class="hms-label">Birth date:</span> <span t-esc="patient.birthdate or ''"/></div>
+                                    <div class="hms-info-row"><span class="hms-label">PCR:</span> <span t-esc="patient.cr_ratio or 0.0"/></div>
                                     <div class="hms-info-row"><span class="hms-label">Blood Type:</span>
-                                        <span t-esc="dict(doc._fields['blood_type'].selection).get(doc.blood_type, '')"/>
+                                        <span t-esc="dict(patient._fields['blood_type'].selection).get(patient.blood_type, '')"/>
                                     </div>
-                                    <div class="hms-info-row"><span class="hms-label">Email:</span> <span t-esc="doc.email or ''"/></div>
+                                    <div class="hms-info-row"><span class="hms-label">Email:</span> <span t-esc="patient.email or ''"/></div>
                                 </div>
                             </div>
 
@@ -126,7 +127,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <t t-set="logs" t-value="doc.log_history_ids"/>
+                                    <t t-set="logs" t-value="patient.log_history_ids.sudo()"/>
                                     <t t-if="logs">
                                         <t t-foreach="logs" t-as="line">
                                             <tr>
